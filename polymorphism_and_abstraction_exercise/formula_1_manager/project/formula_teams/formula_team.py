@@ -26,16 +26,16 @@ class FormulaTeam(ABC):
 
         self.__budget = value
 
-    def calculate_revenue_after_race (self, race_pos: int):
+    def calculate_revenue_after_race(self, race_pos: int):
         revenue = 0
 
-        for positions in self.sponsors.values(): #[{1: 1_500_000, 2: 800_000},...]
-            for pos in positions:
+        for positions in self.sponsors.values():  # [{1: 1_500_000, 2: 800_000,}, ...]
+            for pos in positions:  # [1, 2]
                 if race_pos <= pos:
                     revenue += positions[pos]
                     break
 
-            revenue -= self.expenses_for_one_race
-            self.budget += revenue
+        revenue -= self.expenses_for_one_race
+        self.budget += revenue
 
-            return f"The revenue after the race is {revenue}$. Current budget {self.budget}$."
+        return f"The revenue after the race is {revenue}$. Current budget {self.budget}$"
